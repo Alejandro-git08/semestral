@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-include("conexion.php"); // Conexión a la base de datos
+include("conexion.php"); // Conexión
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre_libro = $_POST['nombre_libro'];
@@ -11,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cantidad = $_POST['cantidad'];
     $autores_input = $_POST['autores'];
 
-    // Separar autores por coma y limpiar espacios
     $autores = array_map('trim', explode(',', $autores_input));
 
     // Insertar libro
@@ -47,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_autor = $stmt_insert->insert_id;
         }
 
-        // Evitar duplicar la relación libro-autor
+        // Para que no se dupliquen los autores
         $stmt_rel_check = $conn->prepare("SELECT * FROM libro_autor WHERE id_libro = ? AND id_autor = ?");
         $stmt_rel_check->bind_param("ii", $id_libro, $id_autor);
         $stmt_rel_check->execute();
@@ -64,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $autores_insertados[] = $autor_nombre;
     }
 
-    // Mostrar los datos agregados
+    // Mostrar los datos
     echo "<h2>Libro agregado correctamente</h2>";
     echo "<p><strong>Nombre:</strong> $nombre_libro</p>";
     echo "<p><strong>Tema:</strong> $tema</p>";

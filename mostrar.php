@@ -1,10 +1,10 @@
 <?php
 include("conexion.php");
 
-// Filtrado por tema
+// Esto lo filtra, no quitar
 $tema_filtro = isset($_GET['tema']) ? $_GET['tema'] : '';
 
-// Construir consulta
+// Esta es la consulta para la bd
 if ($tema_filtro && in_array($tema_filtro, ['Social','Ciencia','Otro'])) {
     $sql = "SELECT libro.id_libro, libro.nombre_libro, libro.tema, libro.cantidad,
                    GROUP_CONCAT(autor.nombre_autor SEPARATOR ', ') AS autores
@@ -19,7 +19,7 @@ if ($tema_filtro && in_array($tema_filtro, ['Social','Ciencia','Otro'])) {
     $stmt->execute();
     $result = $stmt->get_result();
 } else {
-    // Sin filtro
+    // mostrar todos
     $sql = "SELECT libro.id_libro, libro.nombre_libro, libro.tema, libro.cantidad,
                    GROUP_CONCAT(autor.nombre_autor SEPARATOR ', ') AS autores
             FROM libro
@@ -32,7 +32,7 @@ if ($tema_filtro && in_array($tema_filtro, ['Social','Ciencia','Otro'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -97,7 +97,7 @@ if ($tema_filtro && in_array($tema_filtro, ['Social','Ciencia','Otro'])) {
 </main>
 
 <footer>
-    <p>&copy; 2025 Biblioteca Virtual | Diseñado por Tu Nombre</p>
+    <p>&copy; 2025 Biblioteca Virtual | Diseñado por Alejandro Santos y Nicole Valdes</p>
     <p>
         <a href="index.php">Inicio</a> | 
         <a href="acerca.php">Acerca de</a> | 

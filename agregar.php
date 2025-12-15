@@ -39,7 +39,7 @@
 </main>
 
 <footer>
-    <p>&copy; 2025 Biblioteca Virtual | Diseñado por Tu Nombre</p>
+    <p>&copy; 2025 Biblioteca Virtual | Diseñado por Alejandro Santos y Nicole Valdes</p>
     <p>
         <a href="index.php">Inicio</a> | 
         <a href="acerca.php">Acerca de</a> | 
